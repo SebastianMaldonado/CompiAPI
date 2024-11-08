@@ -18,7 +18,8 @@ app.post('/execute', (req, res) => {
                                                      ["A", "", "", "A->id", ""],
                                                      ["B", "", "", "", ""],
                                                      ["C", "", "", "", ""],
-                                                     ["D", "", "D->id", "", ""]]} });
+                                                     ["D", "", "D->id", "", ""]]},
+                 text: text});
     } catch (err) {
         res.status(400).json({ success: false, error: err.message });
     }
