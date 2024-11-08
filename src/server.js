@@ -14,7 +14,11 @@ app.post('/execute', (req, res) => {
         const result = eval(text); // eval executes the code in the string
 
         // Return the result in a dictionary (JSON object)
-        res.json({ success: true, result: result });
+        res.json({ success: true, result: {tabla_m: [["Prod", "{", "}", "id", ","],
+                                                     ["A", "", "", "A->id", ""],
+                                                     ["B", "", "", "", ""],
+                                                     ["C", "", "", "", ""],
+                                                     ["D", "", "D->id", "", ""]]} });
     } catch (err) {
         res.status(400).json({ success: false, error: err.message });
     }
