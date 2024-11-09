@@ -428,7 +428,7 @@ function recognize_string(mTable, inputString) {
             // If top is a non-terminal and we have a rule in M table
             const production = mTable[top][currentInput];
             // Check if production is defined
-            if (!production) {
+            if (production == "error") {
                 trace[trace.length - 1].action = `Error: No production rule found for "${top}" with input "${currentInput}"`;
                 return { result: false, trace }; // Return failure with trace
             }
