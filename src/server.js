@@ -500,7 +500,6 @@ console.log(m_table)
     }
     
 });
-}
 
 app.post('/recognize', (req, res, next) => {
     res.setHeader(
