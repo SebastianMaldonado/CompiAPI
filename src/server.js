@@ -479,7 +479,6 @@ app.post('/recognize', (req, res, next) => {
   //  Firefox caps this at 24 hours (86400 seconds). Chromium (starting in v76) caps at 2 hours (7200 seconds). The default value is 5 seconds.
   res.setHeader("Access-Control-Max-Age", 7200);
     
-    try {
         data = req.body;
         const text = data.text; // Receive the text (JavaScript function)
         const string = data.string; // Receive the text (JavaScript function)
@@ -504,9 +503,6 @@ console.log(trace)
         // Return the result in a dictionary (JSON object)
         res.json({ success: true, result: {recognized: result, trace: trace}, string: string,
                  text: text});
-    } catch (err) {
-        res.status(400).json({ success: false, error: err.message});
-    }
 
     
 
