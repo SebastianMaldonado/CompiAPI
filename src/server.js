@@ -495,7 +495,7 @@ console.log(m_table)
         // Return the result in a dictionary (JSON object)
         res.json({ success: true, result: {tabla_m: m_table},
                   siguientes: all_nexts, primeros: all_firsts,
-                 text: text});
+                 text: non_recursive});
     } catch (err) {
         res.status(400).json({ success: false, error: err.message });
     }
@@ -544,7 +544,7 @@ console.log(trace)
     
 
         // Return the result in a dictionary (JSON object)
-        res.json({ success: true, result: {recognized: result, trace: trace},
+        res.json({ success: true, result: {recognized: result, trace: trace}, string: string,
                  text: text});
     } catch (err) {
         res.status(400).json({ success: false, error: err.message });
