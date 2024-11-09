@@ -524,10 +524,12 @@ app.post('/recognize', (req, res, next) => {
     
     try {
         data = req.body;
-        const m_table = data.m_table; // Receive the text (JavaScript function)
+        const text = data.text; // Receive the text (JavaScript function)
         const string = data.string; // Receive the text (JavaScript function)
-        
+        const {grammar, non_recursive, all_firsts, all_nexts, m_table} = syntax_analysis(text)
+           
 // Testing the outputs of the syntax analysis function 
+  
 
 console.log("...............")
 console.log(all_firsts)
@@ -546,7 +548,7 @@ console.log(trace)
         res.json({ success: true, result: {recognized: result, trace: trace}, string: string,
                  text: text});
     } catch (err) {
-        res.status(400).json({ success: false, error: err.message, input:string, table_input:m_table });
+        res.status(400).json({ success: false, error: err.message, input:string, text: text });
     }
 
     
