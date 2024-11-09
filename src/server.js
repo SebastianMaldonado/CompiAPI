@@ -523,8 +523,9 @@ app.post('/recognize', (req, res, next) => {
   res.setHeader("Access-Control-Max-Age", 7200);
     
     try {
-        const { text } = req.body; // Receive the text (JavaScript function)
-        const { string } = req.body; // Receive the text (JavaScript function)
+        data = req.body;
+        const text = data.text; // Receive the text (JavaScript function)
+        const string = data.string; // Receive the text (JavaScript function)
         const {grammar, non_recursive, all_firsts, all_nexts, m_table} = syntax_analysis(text)
 
 // Testing the outputs of the syntax analysis function 
