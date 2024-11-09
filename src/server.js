@@ -507,7 +507,7 @@ console.log(m_table)
 app.post('/recognize', (req, res, next) => {
     res.setHeader(
     "Access-Control-Allow-Origin",
-    "https://your-frontend.com"
+    "*"
   );
   res.setHeader(
     "Access-Control-Allow-Methods",
