@@ -505,7 +505,7 @@ console.log(trace)
         res.json({ success: true, result: {recognized: result, trace: trace}, string: string,
                  text: text});
     } catch (err) {
-        res.status(400).json({ success: false, error: err.message, input:string, text: text });
+        res.status(400).json({ success: false, error: err.message});
     }
 
     
