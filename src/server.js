@@ -53,15 +53,33 @@ function syntax_analysis(string_grammar){
     
         // Helper function to find the longest common prefix
         function find_common_prefix(productions) {
-            if (productions.length === 0) return '';
-            let prefix = productions[0];
-            for (let i = 1; i < productions.length; i++) {
-                while (productions[i].indexOf(prefix) !== 0) {
-                    prefix = prefix.slice(0, -1);
-                    if (prefix === '') return '';
+            if (productions.length < 2) return ''; // No common prefix possible with less than 2 elements.
+        
+            let longestPrefix = ''; // Stores the longest prefix found.
+            for (let i = 0; i < productions.length - 1; i++) {
+                for (let j = i + 1; j < productions.length; j++) {
+                    let prefix = '';
+                    let k = 0;
+        
+                    // Find common prefix between productions[i] and productions[j].
+                    while (
+                        k < productions[i].length &&
+                        k < productions[j].length &&
+                        productions[i][k] === productions[j][k]
+                    ) {
+                        prefix += productions[i][k];
+                        k++;
+                    }
+        
+                    // Update the longestPrefix if this is longer.
+                    if (prefix.length > longestPrefix.length) {
+                        longestPrefix = prefix;
+                    }
                 }
             }
-            return prefix;
+        
+            console.log(longestPrefix);
+            return longestPrefix;
         }
     
         // Step 1: Detect and remove left recursion for each non-terminal
