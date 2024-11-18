@@ -12,27 +12,33 @@ function syntax_analysis(string_grammar){
         return lines;
     }
 
-    function read_grammar(lines){
+    function read_grammar(lines) {
         const productions = {};
-        // Saves all the productions on a dict where the key is the non terminal (head of the production) and the value is a list with the bodys of the productions
-        lines.forEach(
-            line => {
-                const production = line.trim();
+        // Saves all the productions in an object where the key is the non-terminal (head of the production) and the value is a list of bodies of the productions
+        lines.forEach(line => {
+            const production = line.trim();
     
-                if (production === '') {
-                    return;
-                }
-    
-                const [head, body] = production.split('->').map(s => s.trim());
-    
-                if (!productions[head]){
-                    productions[head] = [];
-                }
-                    productions[head].push(body);
-    
+            if (production === '') {
+                return;
             }
-        );
-        return productions  
+    
+            const [head, rawBody] = production.split('->').map(s => s.trim());
+            let body = rawBody;
+    
+            // Implement the conditions
+            if (body === '&') {
+                // Body is exactly '&', leave it as is
+            } else {
+                // Remove all '&' symbols from the body
+                body = body.replace(/&/g, '').trim();
+            }
+    
+            if (!productions[head]) {
+                productions[head] = [];
+            }
+            productions[head].push(body);
+        });
+        return productions;
     }
 
     function detect_fix_left_recursion_and_left_factoring(productions) {
